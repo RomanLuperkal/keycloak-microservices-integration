@@ -1,6 +1,20 @@
 spring:
   application:
     name: eventapp
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            provider: keycloak
+            client-id: eventapp
+            client-secret: 9Zw96seMhFij0N7Yy8z3N4YyJwb0nrcI
+            client-name: eventapp
+            authorization-grant-type: authorization_code
+            scope: openid, profile, email
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:9090/realms/event
 
 server:
   port: 8091
