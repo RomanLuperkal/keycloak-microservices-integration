@@ -1,3 +1,4 @@
 rootProject.name = 'keycloak-microservices-integration'
 
 include 'eventapp'
+include 'notificationapp'
