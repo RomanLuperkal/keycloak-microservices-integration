@@ -2,6 +2,7 @@ package org.blog.eventapp.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.blog.eventapp.client.NotificationClient;
 import org.blog.eventapp.dto.EventDto;
 import org.blog.eventapp.dto.EventPageDto;
 import org.blog.eventapp.dto.EventType;
@@ -16,6 +17,7 @@ import java.util.stream.IntStream;
 public class EventService {
 
     private final Random random = new Random();
+    private final NotificationClient notificationClient;
 
     private static final int TOTAL_EVENTS = 1000;
 
@@ -41,6 +43,9 @@ public class EventService {
                 "recipient", "admin@company.com",
                 "message", message
         );
+
+        notificationClient.sendNotification(notification);
+        log.info("IN save - notification sent for event: {}", eventDto.uid());
 
         return eventDto;
     }

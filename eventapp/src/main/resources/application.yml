@@ -8,13 +8,16 @@ spring:
           keycloak:
             provider: keycloak
             client-id: eventapp
-            client-secret: 9Zw96seMhFij0N7Yy8z3N4YyJwb0nrcI
+            client-secret: qMuOyMewOXJ2ICSIcRZK6hLykHkDtpFA
             client-name: eventapp
             authorization-grant-type: authorization_code
             scope: openid, profile, email
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:9090/realms/event
+          issuer-uri: http://localhost:9090/realms/proselyte
 
 server:
   port: 8091
+
+notificationapp:
+  url: http://localhost:8092
