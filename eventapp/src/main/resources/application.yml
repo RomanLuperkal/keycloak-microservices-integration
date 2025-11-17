@@ -8,7 +8,7 @@ spring:
           keycloak:
             provider: keycloak
             client-id: eventapp
-            client-secret: Cvg0CPwmN9afeXalrEtBt7CoGFemw9BG
+            client-secret: 9Zw96seMhFij0N7Yy8z3N4YyJwb0nrcI
             client-name: eventapp
             authorization-grant-type: authorization_code
             scope: openid, profile, email

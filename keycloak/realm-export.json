@@ -106,6 +106,25 @@
       }
     ],
     "client": {
+      "notificationapp": [
+        {
+          "id": "c65e5358-1c88-404b-a728-cc5591e0169f",
+          "name": "notificationapp.role_internal_access",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "46fc5a78-50a0-4889-a046-abd7b1e7c86b",
+          "attributes": {}
+        },
+        {
+          "id": "9ad6c212-05f0-4a52-9fd1-811bed276e0b",
+          "name": "uma_protection",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "46fc5a78-50a0-4889-a046-abd7b1e7c86b",
+          "attributes": {}
+        }
+      ],
       "realm-management": [
         {
           "id": "a571bd56-9d5a-488d-af7a-e64293841cf1",
@@ -518,7 +537,31 @@
         "default-roles-event"
       ],
       "clientRoles": {
+        "notificationapp": [
+          "notificationapp.role_internal_access"
+        ],
         "eventapp": [
+          "uma_protection"
+        ]
+      },
+      "notBefore": 0,
+      "groups": []
+    },
+    {
+      "id": "93801ad4-3eb4-4710-a943-d842f64ecbf5",
+      "username": "service-account-notificationapp",
+      "emailVerified": false,
+      "createdTimestamp": 1763405983574,
+      "enabled": true,
+      "totp": false,
+      "serviceAccountClientId": "notificationapp",
+      "disableableCredentialTypes": [],
+      "requiredActions": [],
+      "realmRoles": [
+        "default-roles-event"
+      ],
+      "clientRoles": {
+        "notificationapp": [
           "uma_protection"
         ]
       },
@@ -803,8 +846,8 @@
         }
       ],
       "defaultClientScopes": [
-        "web-origins",
         "service_account",
+        "web-origins",
         "acr",
         "profile",
         "roles",
@@ -852,6 +895,106 @@
             "decisionStrategy": "UNANIMOUS",
             "config": {
               "defaultResourceType": "urn:eventapp:resources:default",
+              "applyPolicies": "[\"Default Policy\"]"
+            }
+          }
+        ],
+        "scopes": [],
+        "decisionStrategy": "UNANIMOUS"
+      }
+    },
+    {
+      "id": "46fc5a78-50a0-4889-a046-abd7b1e7c86b",
+      "clientId": "notificationapp",
+      "name": "notificationapp",
+      "description": "notificationapp",
+      "rootUrl": "http://localhost:8092",
+      "adminUrl": "http://localhost:8092",
+      "baseUrl": "http://localhost:8092",
+      "surrogateAuthRequired": false,
+      "enabled": true,
+      "alwaysDisplayInConsole": true,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "**********",
+      "redirectUris": [
+        "http://localhost:8092/*"
+      ],
+      "webOrigins": [
+        "http://localhost:8092"
+      ],
+      "notBefore": 0,
+      "bearerOnly": false,
+      "consentRequired": false,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": true,
+      "authorizationServicesEnabled": true,
+      "publicClient": false,
+      "frontchannelLogout": true,
+      "protocol": "openid-connect",
+      "attributes": {
+        "realm_client": "false",
+        "oidc.ciba.grant.enabled": "false",
+        "client.secret.creation.time": "1763405983",
+        "backchannel.logout.session.required": "true",
+        "standard.token.exchange.enabled": "false",
+        "oauth2.device.authorization.grant.enabled": "false",
+        "backchannel.logout.revoke.offline.tokens": "false"
+      },
+      "authenticationFlowBindingOverrides": {},
+      "fullScopeAllowed": true,
+      "nodeReRegistrationTimeout": -1,
+      "defaultClientScopes": [
+        "service_account",
+        "web-origins",
+        "acr",
+        "profile",
+        "roles",
+        "basic",
+        "email"
+      ],
+      "optionalClientScopes": [
+        "address",
+        "eventapp",
+        "phone",
+        "offline_access",
+        "organization",
+        "microprofile-jwt"
+      ],
+      "authorizationSettings": {
+        "allowRemoteResourceManagement": true,
+        "policyEnforcementMode": "ENFORCING",
+        "resources": [
+          {
+            "name": "Default Resource",
+            "type": "urn:notificationapp:resources:default",
+            "ownerManagedAccess": false,
+            "attributes": {},
+            "uris": [
+              "/*"
+            ]
+          }
+        ],
+        "policies": [
+          {
+            "name": "Default Policy",
+            "description": "A policy that grants access only for users within this realm",
+            "type": "js",
+            "logic": "POSITIVE",
+            "decisionStrategy": "AFFIRMATIVE",
+            "config": {
+              "code": "// by default, grants any permission associated with this policy\n$evaluation.grant();\n"
+            }
+          },
+          {
+            "name": "Default Permission",
+            "description": "A permission that applies to the default resource type",
+            "type": "resource",
+            "logic": "POSITIVE",
+            "decisionStrategy": "UNANIMOUS",
+            "config": {
+              "defaultResourceType": "urn:notificationapp:resources:default",
               "applyPolicies": "[\"Default Policy\"]"
             }
           }
